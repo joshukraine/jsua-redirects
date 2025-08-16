@@ -4,6 +4,24 @@
 # Root domain redirect
 / https://ofreport.com/ 301
 
+# Trailing slash redirects (handle URLs with trailing slashes)
+/dotfiles/ /dotfiles 301
+/fb/ /fb 301
+/github/ /github 301
+/jan-2021-invitation/ /jan-2021-invitation 301
+/join-pioneers/ /join-pioneers 301
+/macos/ /macos 301
+/mewe/ /mewe 301
+/mm-gulp/ /mm-gulp 301
+/nov-proj-2024/ /nov-proj-2024 301
+/pioneers-info/ /pioneers-info 301
+/pioneers-zoom-part-1/ /pioneers-zoom-part-1 301
+/rmo-2021/ /rmo-2021 301
+/tw/ /tw 301
+/verses/ /verses 301
+/wish-list/ /wish-list 301
+/x/ /x 301
+
 # Personal/Development Links
 /dotfiles https://github.com/joshukraine/dotfiles 301
 /fb https://www.facebook.com/joshukraine 301
