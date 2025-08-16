@@ -1,0 +1,14 @@
+# jsua.co URL Redirects
+# Format: /path https://destination-url status-code
+
+# Personal/Development Links
+/dotfiles https://github.com/joshukraine/dotfiles 301
+
+# Business/Professional Links
+# /business https://example-business-site.com 301
+# /contact https://linkedin.com/in/yourprofile 301
+# /card https://business-landing-page.com 301
+
+# Add new redirects above this line
+
+# vim: set filetype=apache:
