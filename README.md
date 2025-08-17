@@ -1,6 +1,6 @@
 # jsua.co URL Redirects
 
-This repository manages URL redirects for the `jsua.co` domain using Cloudflare Pages.
+This repository manages URL redirects for the `jsua.co` domain using [Cloudflare Pages](https://pages.cloudflare.com/).
 
 ## What This Does
 
@@ -69,7 +69,7 @@ bundle install
 
 ### Running Tests
 
-The redirect generator includes a test suite using Minitest with colored output:
+The redirect generator includes a test suite using [Minitest](https://github.com/minitest/minitest) with colored output:
 
 ```bash
 # Run all tests
@@ -81,7 +81,7 @@ bundle exec ruby test/test_redirect_generator.rb
 
 ### Code Quality
 
-The project uses StandardRB for Ruby style enforcement:
+The project uses [StandardRB](https://github.com/standardrb/standard) for Ruby style enforcement:
 
 ```bash
 # Check code style
@@ -97,3 +97,14 @@ bundle exec standardrb --fix
 - **DNS**: Managed through Cloudflare
 - **SSL**: Automatically handled by Cloudflare
 - **Analytics**: Available in Cloudflare dashboard
+
+## References
+
+This project uses the following technologies and tools:
+
+- **[Cloudflare Pages](https://pages.cloudflare.com/)** - Static site hosting and deployment platform
+- **[Ruby](https://www.ruby-lang.org/)** - Programming language for the redirect generator
+- **[YAML](https://yaml.org/)** - Human-readable data serialization standard for configuration
+- **[Minitest](https://github.com/minitest/minitest)** - Ruby testing framework
+- **[StandardRB](https://github.com/standardrb/standard)** - Ruby style guide, linter, and formatter
+- **[Bundler](https://bundler.io/)** - Dependency management for Ruby projects
