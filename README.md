@@ -39,10 +39,16 @@ To add a new redirect:
 
 Example YAML entry:
 ```yaml
-- path: example
-  url: https://example.com
-  description: Example redirect
-  category: developer  # Options: personal, developer, ministry, third_party
+redirects:
+  developer:
+    - path: example
+      url: https://example.com
+      description: Example redirect
+  
+  personal:
+    - path: my-link
+      url: https://mywebsite.com
+      description: Personal website
 ```
 
 ## Examples

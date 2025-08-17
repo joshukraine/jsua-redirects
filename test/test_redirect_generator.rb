@@ -41,7 +41,7 @@ class TestRedirectGenerator < Minitest::Test
 
     content = File.read(@output_file)
     assert_includes content, "# jsua.co URL Redirects"
-    assert_includes content, "# WARNING: This file is auto-generated. DO NOT EDIT DIRECTLY!"
+    assert_includes content, "# WARNING: This file is auto-generated. Do not edit directly!"
     assert_includes content, "# vim: set filetype=apache:"
   end
 
@@ -70,13 +70,15 @@ class TestRedirectGenerator < Minitest::Test
 
   def test_generates_simple_redirect
     config = {
-      "redirects" => [
-        {
-          "path" => "test",
-          "url" => "https://test.com",
-          "status" => 301
-        }
-      ]
+      "redirects" => {
+        "personal" => [
+          {
+            "path" => "test",
+            "url" => "https://test.com",
+            "status" => 301
+          }
+        ]
+      }
     }
     write_yaml(@config_file, config)
 
@@ -98,13 +100,15 @@ class TestRedirectGenerator < Minitest::Test
 
   def test_defaults_to_301_status
     config = {
-      "redirects" => [
-        {
-          "path" => "test",
-          "url" => "https://test.com"
-          # No status specified
-        }
-      ]
+      "redirects" => {
+        "personal" => [
+          {
+            "path" => "test",
+            "url" => "https://test.com"
+            # No status specified
+          }
+        ]
+      }
     }
     write_yaml(@config_file, config)
 
@@ -121,28 +125,32 @@ class TestRedirectGenerator < Minitest::Test
 
   def test_categorizes_redirects_correctly
     config = {
-      "redirects" => [
-        {
-          "path" => "personal1",
-          "url" => "https://personal1.com",
-          "category" => "personal"
-        },
-        {
-          "path" => "dev1",
-          "url" => "https://dev1.com",
-          "category" => "developer"
-        },
-        {
-          "path" => "ministry1",
-          "url" => "https://ministry1.com",
-          "category" => "ministry"
-        },
-        {
-          "path" => "third1",
-          "url" => "https://third1.com",
-          "category" => "third_party"
-        }
-      ]
+      "redirects" => {
+        "personal" => [
+          {
+            "path" => "personal1",
+            "url" => "https://personal1.com"
+          }
+        ],
+        "developer" => [
+          {
+            "path" => "dev1",
+            "url" => "https://dev1.com"
+          }
+        ],
+        "ministry" => [
+          {
+            "path" => "ministry1",
+            "url" => "https://ministry1.com"
+          }
+        ],
+        "third_party" => [
+          {
+            "path" => "third1",
+            "url" => "https://third1.com"
+          }
+        ]
+      }
     }
     write_yaml(@config_file, config)
 
@@ -174,13 +182,14 @@ class TestRedirectGenerator < Minitest::Test
 
   def test_defaults_to_personal_category
     config = {
-      "redirects" => [
-        {
-          "path" => "test",
-          "url" => "https://test.com"
-          # No category specified
-        }
-      ]
+      "redirects" => {
+        "personal" => [
+          {
+            "path" => "test",
+            "url" => "https://test.com"
+          }
+        ]
+      }
     }
     write_yaml(@config_file, config)
 
@@ -197,14 +206,15 @@ class TestRedirectGenerator < Minitest::Test
 
   def test_handles_empty_categories
     config = {
-      "redirects" => [
-        {
-          "path" => "dev1",
-          "url" => "https://dev1.com",
-          "category" => "developer"
-        }
+      "redirects" => {
+        "developer" => [
+          {
+            "path" => "dev1",
+            "url" => "https://dev1.com"
+          }
+        ]
         # No personal, ministry, or third_party redirects
-      ]
+      }
     }
     write_yaml(@config_file, config)
 

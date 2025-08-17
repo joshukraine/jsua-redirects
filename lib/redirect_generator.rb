@@ -19,7 +19,7 @@ class RedirectGenerator
     write_redirects(config)
 
     {
-      total_redirects: config["redirects"]&.length || 0,
+      total_redirects: count_total_redirects(config["redirects"]),
       has_root: !config["root"].nil?
     }
   end
@@ -31,10 +31,11 @@ class RedirectGenerator
       write_header(file)
       write_root_redirect(file, config["root"]) if config["root"]
 
-      redirects = config["redirects"] || []
-      if redirects.any?
-        write_trailing_slash_redirects(file, redirects)
-        write_categorized_redirects(file, redirects)
+      redirects_by_category = config["redirects"] || {}
+      if redirects_by_category.any?
+        all_redirects = flatten_redirects(redirects_by_category)
+        write_trailing_slash_redirects(file, all_redirects)
+        write_categorized_redirects(file, redirects_by_category)
       end
 
       write_footer(file)
@@ -43,7 +44,8 @@ class RedirectGenerator
 
   def write_header(file)
     file.puts "# jsua.co URL Redirects"
-    file.puts "# WARNING: This file is auto-generated. DO NOT EDIT DIRECTLY!"
+    file.puts "#"
+    file.puts "# WARNING: This file is auto-generated. Do not edit directly!"
     file.puts "# To modify redirects, edit redirects.yaml and run: ruby generate_redirects.rb"
     file.puts "#"
     file.puts "# Format: /path https://destination-url status-code"
@@ -66,30 +68,29 @@ class RedirectGenerator
     file.puts
   end
 
-  def write_categorized_redirects(file, redirects)
-    categories = {
-      "personal" => "Personal Links",
-      "developer" => "Developer Links",
-      "ministry" => "Ministry Links",
-      "third_party" => "Third Party Links"
-    }
+  def write_categorized_redirects(file, redirects_by_category)
+    redirects_by_category.each do |category_key, category_redirects|
+      next unless category_redirects&.any?
 
-    grouped_redirects = group_by_category(redirects)
-
-    categories.each do |category_key, category_title|
-      write_category(file, category_title, grouped_redirects[category_key])
+      category_title = format_category_title(category_key)
+      write_category(file, category_title, category_redirects)
     end
   end
 
-  def group_by_category(redirects)
-    grouped = Hash.new { |h, k| h[k] = [] }
+  def format_category_title(category_key)
+    # Convert category key to display title
+    # e.g., "third_party" => "Third Party Links"
+    category_key.split("_").map(&:capitalize).join(" ") + " Links"
+  end
 
-    redirects.each do |redirect|
-      category = redirect["category"] || "personal"
-      grouped[category] << redirect
-    end
+  def flatten_redirects(redirects_by_category)
+    redirects_by_category.values.compact.flatten
+  end
 
-    grouped
+  def count_total_redirects(redirects_by_category)
+    return 0 unless redirects_by_category
+
+    redirects_by_category.values.compact.sum { |category_redirects| category_redirects&.length || 0 }
   end
 
   def write_category(file, category_title, category_redirects)
@@ -106,8 +107,15 @@ class RedirectGenerator
   end
 
   def write_footer(file)
-    file.puts
-    file.puts "# vim: set filetype=apache" + ":"
-    file.puts
+    file.puts vim_ft_comment
+  end
+
+  private
+
+  # Generate vim modeline comment for the _redirects file
+  # Broken into parts to prevent Neovim from interpreting this as a modeline
+  # when editing this Ruby source file
+  def vim_ft_comment
+    ["# " + "vim: ", "set ", "filetype", "=", "apache:"].join("")
   end
 end
