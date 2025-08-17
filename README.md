@@ -6,6 +6,10 @@ This repository manages URL redirects for the `jsua.co` domain using [Cloudflare
 
 This repo contains a simple `_redirects` file that powers short URL forwarding for `jsua.co`. When someone visits a short URL like `jsua.co/dotfiles`, they get redirected to the full destination URL.
 
+### Landing Page
+
+Visit [jsua.co/links](https://jsua.co/links) to see all available short URLs with click-to-copy functionality.
+
 ## Use Cases
 
 - **QR codes** on business cards that redirect to websites
@@ -90,6 +94,19 @@ bundle exec standardrb
 # Auto-fix style issues
 bundle exec standardrb --fix
 ```
+
+## Landing Page
+
+The redirect generator automatically creates an HTML landing page at `/links` that displays all available short URLs. This page:
+
+- **Auto-generated**: Updates automatically when redirects.yaml changes
+- **Click-to-copy**: Each URL has a copy button for easy sharing
+- **Categorized**: URLs are grouped by category (personal, developer, ministry, third_party)
+- **Statistics**: Shows total count and per-category breakdowns
+- **Responsive**: Works on desktop and mobile devices
+- **Accessible**: Keyboard navigable with ARIA labels
+
+The landing page is generated alongside the `_redirects` file whenever you run `ruby generate_redirects.rb`.
 
 ## Technical Details
 

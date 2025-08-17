@@ -5,6 +5,9 @@
 #
 # Format: /path https://destination-url status-code
 
+# Special rule to serve HTML landing page
+/links /links.html 200
+
 # Root domain redirect
 / https://ofreport.com/ 301
 
