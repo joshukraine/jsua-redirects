@@ -1,5 +1,6 @@
 # jsua.co URL Redirects
-# WARNING: This file is auto-generated. DO NOT EDIT DIRECTLY!
+#
+# WARNING: This file is auto-generated. Do not edit directly!
 # To modify redirects, edit redirects.yaml and run: ruby generate_redirects.rb
 #
 # Format: /path https://destination-url status-code
@@ -8,22 +9,22 @@
 / https://ofreport.com/ 301
 
 # Trailing slash redirects (handle URLs with trailing slashes)
-/dotfiles/ /dotfiles 301
 /wish-list/ /wish-list 301
 /fb/ /fb 301
-/github/ /github 301
-/macos/ /macos 301
 /mewe/ /mewe 301
-/mm-gulp/ /mm-gulp 301
 /tw/ /tw 301
 /x/ /x 301
+/dotfiles/ /dotfiles 301
+/github/ /github 301
+/macos/ /macos 301
+/mm-gulp/ /mm-gulp 301
 /jan-2021-invitation/ /jan-2021-invitation 301
 /join-pioneers/ /join-pioneers 301
 /nov-proj-2024/ /nov-proj-2024 301
 /pioneers-info/ /pioneers-info 301
 /pioneers-zoom-part-1/ /pioneers-zoom-part-1 301
-/rmo-2021/ /rmo-2021 301
 /verses/ /verses 301
+/rmo-2021/ /rmo-2021 301
 
 # Personal Links
 /wish-list https://joshukraine.notion.site/Joshua-s-Wish-List-2f2e7b831c1f46e4962a5c8ed3842c04 301
@@ -44,9 +45,9 @@
 /nov-proj-2024 https://www.youtube.com/playlist?list=PLwBim7LWPkXVHyH1OtgqtTQU0SyhVNBzn 301
 /pioneers-info https://www.notion.so/joshukraine/Pioneers-Info-Center-d19fd3f2c39947e1baa757968fb73184 301
 /pioneers-zoom-part-1 https://youtu.be/Fo19lxOQJp8 301
-/rmo-2021 https://goodandevilbook.com/english/ 301
 /verses https://gist.github.com/joshukraine/4fbeb76580ef113a2c1f13b7c1c8b123 301
 
+# Third Party Links
+/rmo-2021 https://goodandevilbook.com/english/ 301
 
 # vim: set filetype=apache:
-

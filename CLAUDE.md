@@ -73,4 +73,4 @@ bundle exec rake test
 - Run `bundle exec rake test` to verify the generator is working correctly
 - All redirects should use HTTPS destination URLs when possible
 - Keep redirect paths short and memorable (this is the main purpose)
-- Use the `category` field in YAML to categorize redirects (personal, developer, ministry, third_party)
+- Organize redirects by category in YAML (personal, developer, ministry, third_party)
