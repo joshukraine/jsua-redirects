@@ -27,7 +27,9 @@ This repo contains a simple `_redirects` file that powers short URL forwarding f
 
 ## Adding New Redirects
 
-### Method 1: Using the Generator Script (Recommended)
+**Important**: The `_redirects` file is auto-generated. Never edit it directly!
+
+To add a new redirect:
 
 1. Edit the `redirects.yaml` file
 2. Add your redirect under the appropriate section
@@ -40,15 +42,8 @@ Example YAML entry:
 - path: example
   url: https://example.com
   description: Example redirect
-  category: business  # Optional: 'business' or leave blank for personal
+  category: developer  # Options: personal, developer, ministry, third_party
 ```
-
-### Method 2: Direct Edit (Quick fixes)
-
-1. Edit the `_redirects` file directly
-2. Remember to add both the trailing slash redirect and the actual redirect
-3. Commit and push to GitHub
-4. Cloudflare Pages will auto-deploy the changes
 
 ## Examples
 

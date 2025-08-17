@@ -41,6 +41,7 @@ class TestRedirectGenerator < Minitest::Test
 
     content = File.read(@output_file)
     assert_includes content, "# jsua.co URL Redirects"
+    assert_includes content, "# WARNING: This file is auto-generated. DO NOT EDIT DIRECTLY!"
     assert_includes content, "# vim: set filetype=apache:"
   end
 

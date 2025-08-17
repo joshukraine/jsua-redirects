@@ -43,6 +43,9 @@ class RedirectGenerator
 
   def write_header(file)
     file.puts "# jsua.co URL Redirects"
+    file.puts "# WARNING: This file is auto-generated. DO NOT EDIT DIRECTLY!"
+    file.puts "# To modify redirects, edit redirects.yaml and run: ruby generate_redirects.rb"
+    file.puts "#"
     file.puts "# Format: /path https://destination-url status-code"
     file.puts
   end
@@ -103,7 +106,6 @@ class RedirectGenerator
   end
 
   def write_footer(file)
-    file.puts "# Add new redirects above this line"
     file.puts
     file.puts "# vim: set filetype=apache" + ":"
     file.puts
