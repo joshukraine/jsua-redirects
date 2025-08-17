@@ -40,40 +40,39 @@ File.open("_redirects", "w") do |file|
     end
     file.puts
 
-    # Group redirects by category (personal vs business)
-    personal_redirects = []
-    business_redirects = []
+    # Define categories and their display names
+    categories = {
+      "personal" => "Personal Links",
+      "developer" => "Developer Links",
+      "ministry" => "Ministry Links",
+      "third_party" => "Third Party Links"
+    }
+
+    # Group redirects by category
+    grouped_redirects = Hash.new { |h, k| h[k] = [] }
 
     redirects.each do |redirect|
-      if redirect["category"] == "business"
-        business_redirects << redirect
-      else
-        personal_redirects << redirect
+      category = redirect["category"] || "personal"
+      grouped_redirects[category] << redirect
+    end
+
+    # Helper method to write redirects for a category
+    write_category = lambda do |category_key, category_title, category_redirects|
+      if category_redirects.any?
+        file.puts "# #{category_title}"
+        category_redirects.each do |redirect|
+          path = redirect["path"]
+          url = redirect["url"]
+          status = redirect["status"] || 301
+          file.puts "/#{path} #{url} #{status}"
+        end
+        file.puts
       end
     end
 
-    # Personal/Development Links
-    if personal_redirects.any?
-      file.puts "# Personal/Development Links"
-      personal_redirects.each do |redirect|
-        path = redirect["path"]
-        url = redirect["url"]
-        status = redirect["status"] || 301
-        file.puts "/#{path} #{url} #{status}"
-      end
-      file.puts
-    end
-
-    # Business/Professional Links
-    if business_redirects.any?
-      file.puts "# Business/Professional Links"
-      business_redirects.each do |redirect|
-        path = redirect["path"]
-        url = redirect["url"]
-        status = redirect["status"] || 301
-        file.puts "/#{path} #{url} #{status}"
-      end
-      file.puts
+    # Write each category in order
+    categories.each do |category_key, category_title|
+      write_category.call(category_key, category_title, grouped_redirects[category_key])
     end
   end
 
@@ -87,4 +86,3 @@ end
 puts "✅ Generated _redirects file successfully!"
 puts "📝 Total redirects: #{config["redirects"]&.length || 0}"
 puts "🔗 Root redirect: #{config["root"] ? "Yes" : "No"}"
-
