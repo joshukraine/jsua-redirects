@@ -8,7 +8,7 @@ class TestRedirectGenerator < Minitest::Test
     @temp_dir = Dir.mktmpdir
     @config_file = File.join(@temp_dir, "test_redirects.yaml")
     @output_file = File.join(@temp_dir, "_redirects")
-    @html_output_file = File.join(@temp_dir, "links.html")
+    @html_output_file = File.join(@temp_dir, "links", "index.html")
   end
 
   def teardown
@@ -336,23 +336,6 @@ class TestRedirectGenerator < Minitest::Test
     assert_includes content, "test&amp;path"
     assert_includes content, "&lt;script&gt;"
     refute_includes content, "<script>alert"
-  end
-
-  def test_html_includes_links_redirect_rule
-    write_yaml(@config_file, {})
-
-    generator = RedirectGenerator.new(
-      config_file: @config_file,
-      output_file: @output_file,
-      html_output_file: @html_output_file
-    )
-
-    generator.generate
-
-    content = File.read(@output_file)
-
-    # Check that /links redirect rule is added
-    assert_includes content, "/links /links.html 200"
   end
 
   private

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsua.co Redirect Tester</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 0;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+        .section {
+            margin: 2rem 0;
+        }
+        .section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+        .link-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .link-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        .link-path {
+            font-weight: 600;
+        }
+        .link-icon {
+            opacity: 0.7;
+            font-size: 0.8rem;
+        }
+        .stats {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        .root-redirect {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>jsua.co Redirect Tester</h1>
+        
+        <div class="section">
+            <h2>Root Domain</h2>
+            <div class="links-grid">
+                <a href="https://jsua.co/" class="link-button root-redirect" target="_blank">
+                    <span class="link-path">jsua.co/</span>
+                    <span class="link-icon">🏠</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Personal/Development Links</h2>
+            <div class="links-grid">
+                <a href="https://jsua.co/dotfiles" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/dotfiles</span>
+                    <span class="link-icon">⚙️</span>
+                </a>
+                <a href="https://jsua.co/fb" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/fb</span>
+                    <span class="link-icon">📘</span>
+                </a>
+                <a href="https://jsua.co/github" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/github</span>
+                    <span class="link-icon">🐙</span>
+                </a>
+                <a href="https://jsua.co/macos" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/macos</span>
+                    <span class="link-icon">🍎</span>
+                </a>
+                <a href="https://jsua.co/mewe" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/mewe</span>
+                    <span class="link-icon">👥</span>
+                </a>
+                <a href="https://jsua.co/mm-gulp" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/mm-gulp</span>
+                    <span class="link-icon">⚡</span>
+                </a>
+                <a href="https://jsua.co/tw" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/tw</span>
+                    <span class="link-icon">🐦</span>
+                </a>
+                <a href="https://jsua.co/x" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/x</span>
+                    <span class="link-icon">❌</span>
+                </a>
+                <a href="https://jsua.co/wish-list" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/wish-list</span>
+                    <span class="link-icon">🎁</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Business/Professional Links</h2>
+            <div class="links-grid">
+                <a href="https://jsua.co/jan-2021-invitation" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/jan-2021-invitation</span>
+                    <span class="link-icon">📅</span>
+                </a>
+                <a href="https://jsua.co/join-pioneers" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/join-pioneers</span>
+                    <span class="link-icon">💬</span>
+                </a>
+                <a href="https://jsua.co/nov-proj-2024" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/nov-proj-2024</span>
+                    <span class="link-icon">📺</span>
+                </a>
+                <a href="https://jsua.co/pioneers-info" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/pioneers-info</span>
+                    <span class="link-icon">ℹ️</span>
+                </a>
+                <a href="https://jsua.co/pioneers-zoom-part-1" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/pioneers-zoom-part-1</span>
+                    <span class="link-icon">🎥</span>
+                </a>
+                <a href="https://jsua.co/rmo-2021" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/rmo-2021</span>
+                    <span class="link-icon">📖</span>
+                </a>
+                <a href="https://jsua.co/verses" class="link-button" target="_blank">
+                    <span class="link-path">jsua.co/verses</span>
+                    <span class="link-icon">📜</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="stats">
+            <p><strong>Total Redirects:</strong> 17 (including root domain)</p>
+            <p><strong>Personal/Development:</strong> 9 links</p>
+            <p><strong>Business/Professional:</strong> 7 links</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                All links open in new tabs for easy testing. Click any button to test the redirect!
+            </p>
+        </div>
+    </div>
+</body>
+</html>

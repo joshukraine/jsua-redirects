@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 require "yaml"
+require "fileutils"
 require_relative "html_template"
 
 class RedirectGenerator
   attr_reader :config_file, :output_file, :html_output_file
 
-  def initialize(config_file: "redirects.yaml", output_file: "_redirects", html_output_file: "links.html")
+  def initialize(config_file: "redirects.yaml", output_file: "_redirects", html_output_file: "links/index.html")
     @config_file = config_file
     @output_file = output_file
     @html_output_file = html_output_file
@@ -55,9 +56,6 @@ class RedirectGenerator
     file.puts "# To modify redirects, edit redirects.yaml and run: ruby generate_redirects.rb"
     file.puts "#"
     file.puts "# Format: /path https://destination-url status-code"
-    file.puts
-    file.puts "# Special rule to serve HTML landing page"
-    file.puts "/links /links.html 200"
     file.puts
   end
 
@@ -127,6 +125,7 @@ class RedirectGenerator
   end
 
   def write_html_page(config)
+    FileUtils.mkdir_p(File.dirname(html_output_file))
     File.open(html_output_file, "w") do |file|
       file.puts generate_html_content(config)
     end

@@ -8,7 +8,7 @@ This repo contains a simple `_redirects` file that powers short URL forwarding f
 
 ### Landing Page
 
-Visit [jsua.co/links](https://jsua.co/links) to see all available short URLs with click-to-copy functionality.
+Visit [jsua.co/links](https://jsua.co/links) to see all available short URLs with click-to-copy functionality. The landing page is served from `links/index.html`.
 
 ## Use Cases
 
@@ -106,7 +106,7 @@ The redirect generator automatically creates an HTML landing page at `/links` th
 - **Responsive**: Works on desktop and mobile devices
 - **Accessible**: Keyboard navigable with ARIA labels
 
-The landing page is generated alongside the `_redirects` file whenever you run `ruby generate_redirects.rb`.
+The landing page is generated at `links/index.html` alongside the `_redirects` file whenever you run `ruby generate_redirects.rb`.
 
 ## Technical Details
 
