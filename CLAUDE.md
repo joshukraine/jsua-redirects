@@ -10,7 +10,9 @@ This is a URL redirect management repository for the `jsua.co` domain using Clou
 
 - `redirects.yaml` - Source configuration for redirects (edit this file)
 - `generate_redirects.rb` - Ruby script that generates `_redirects` from YAML
+- `lib/redirect_generator.rb` - Core logic for generating redirects
 - `_redirects` - The generated configuration file for Cloudflare Pages
+- `test/test_redirect_generator.rb` - Test suite for the generator
 - `README.md` - User documentation explaining the redirect system
 
 ## Redirect Configuration
@@ -61,11 +63,18 @@ After deployment, test by visiting `https://jsua.co/your-path` in a browser or u
 curl -I https://jsua.co/your-path
 ```
 
+### Running tests
+
+```bash
+# Run the test suite
+rake test
+```
+
 ## Important Notes
 
-- This is a configuration-only repository - no tests or build process exists
 - Edit `redirects.yaml` and run `ruby generate_redirects.rb` to maintain redirects
 - The generator automatically handles trailing slash redirects
+- Run `rake test` to verify the generator is working correctly
 - All redirects should use HTTPS destination URLs when possible
 - Keep redirect paths short and memorable (this is the main purpose)
-- Use the `category: business` field in YAML to categorize business redirects
+- Use the `category` field in YAML to categorize redirects (personal, developer, ministry, third_party)
