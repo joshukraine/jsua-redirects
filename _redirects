@@ -6,6 +6,7 @@
 
 # Trailing slash redirects (handle URLs with trailing slashes)
 /dotfiles/ /dotfiles 301
+/wish-list/ /wish-list 301
 /fb/ /fb 301
 /github/ /github 301
 /macos/ /macos 301
@@ -13,7 +14,6 @@
 /mm-gulp/ /mm-gulp 301
 /tw/ /tw 301
 /x/ /x 301
-/wish-list/ /wish-list 301
 /jan-2021-invitation/ /jan-2021-invitation 301
 /join-pioneers/ /join-pioneers 301
 /nov-proj-2024/ /nov-proj-2024 301
@@ -22,18 +22,20 @@
 /rmo-2021/ /rmo-2021 301
 /verses/ /verses 301
 
-# Personal/Development Links
-/dotfiles https://github.com/joshukraine/dotfiles 301
+# Personal Links
+/wish-list https://joshukraine.notion.site/Joshua-s-Wish-List-2f2e7b831c1f46e4962a5c8ed3842c04 301
 /fb https://www.facebook.com/joshukraine 301
-/github https://github.com/joshukraine 301
-/macos https://github.com/joshukraine/mac-bootstrap 301
 /mewe https://mewe.com/i/joshukraine 301
-/mm-gulp https://github.com/joshukraine/middleman-gulp 301
 /tw https://twitter.com/joshukraine 301
 /x https://x.com/joshukraine 301
-/wish-list https://joshukraine.notion.site/Joshua-s-Wish-List-2f2e7b831c1f46e4962a5c8ed3842c04 301
 
-# Business/Professional Links
+# Developer Links
+/dotfiles https://github.com/joshukraine/dotfiles 301
+/github https://github.com/joshukraine 301
+/macos https://github.com/joshukraine/mac-bootstrap 301
+/mm-gulp https://github.com/joshukraine/middleman-gulp 301
+
+# Ministry Links
 /jan-2021-invitation https://www.notion.so/joshukraine/A-Unique-Opportunity-bf28f2366efc4de7b151adda0d6ef15f 301
 /join-pioneers https://chat.whatsapp.com/KIaTX6n8TgU03Ywd15yWv0 301
 /nov-proj-2024 https://www.youtube.com/playlist?list=PLwBim7LWPkXVHyH1OtgqtTQU0SyhVNBzn 301
