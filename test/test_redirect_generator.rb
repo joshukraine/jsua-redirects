@@ -8,6 +8,7 @@ class TestRedirectGenerator < Minitest::Test
     @temp_dir = Dir.mktmpdir
     @config_file = File.join(@temp_dir, "test_redirects.yaml")
     @output_file = File.join(@temp_dir, "_redirects")
+    @html_output_file = File.join(@temp_dir, "links.html")
   end
 
   def teardown
@@ -30,7 +31,8 @@ class TestRedirectGenerator < Minitest::Test
 
     generator = RedirectGenerator.new(
       config_file: @config_file,
-      output_file: @output_file
+      output_file: @output_file,
+      html_output_file: @html_output_file
     )
 
     result = generator.generate
@@ -232,6 +234,118 @@ class TestRedirectGenerator < Minitest::Test
     refute_includes content, "# Personal Links"
     refute_includes content, "# Ministry Links"
     refute_includes content, "# Third Party Links"
+  end
+
+  def test_generates_html_landing_page
+    config = {
+      "root" => {
+        "url" => "https://ofreport.com/",
+        "status" => 301
+      },
+      "redirects" => {
+        "personal" => [
+          {
+            "path" => "fb",
+            "url" => "https://www.facebook.com/joshukraine",
+            "description" => "Facebook profile"
+          }
+        ],
+        "developer" => [
+          {
+            "path" => "github",
+            "url" => "https://github.com/joshukraine",
+            "description" => "GitHub profile"
+          }
+        ]
+      }
+    }
+    write_yaml(@config_file, config)
+
+    generator = RedirectGenerator.new(
+      config_file: @config_file,
+      output_file: @output_file,
+      html_output_file: @html_output_file
+    )
+
+    generator.generate
+
+    assert File.exist?(@html_output_file)
+    
+    content = File.read(@html_output_file)
+    
+    # Check basic structure
+    assert_includes content, "<!DOCTYPE html>"
+    assert_includes content, "<title>jsua.co Short URLs</title>"
+    assert_includes content, "Click to visit or copy any short URL"
+    
+    # Check root redirect section
+    assert_includes content, "Root Domain"
+    assert_includes content, "jsua.co/"
+    assert_includes content, "Redirects to https://ofreport.com/"
+    
+    # Check category sections
+    assert_includes content, "Personal"
+    assert_includes content, "Developer"
+    
+    # Check individual links
+    assert_includes content, "jsua.co/fb"
+    assert_includes content, "Facebook profile"
+    assert_includes content, "jsua.co/github"
+    assert_includes content, "GitHub profile"
+    
+    # Check copy functionality
+    assert_includes content, "copyToClipboard"
+    assert_includes content, "Copy"
+    
+    # Check statistics - use a more specific assertion
+    assert_match(/<strong>Total Short URLs:<\/strong> 3/, content)
+  end
+
+  def test_html_generation_handles_special_characters
+    config = {
+      "redirects" => {
+        "personal" => [
+          {
+            "path" => "test&path",
+            "url" => "https://test.com/?q=<script>",
+            "description" => "Test & <script>alert('xss')</script>"
+          }
+        ]
+      }
+    }
+    write_yaml(@config_file, config)
+
+    generator = RedirectGenerator.new(
+      config_file: @config_file,
+      output_file: @output_file,
+      html_output_file: @html_output_file
+    )
+
+    generator.generate
+
+    content = File.read(@html_output_file)
+    
+    # Check HTML escaping
+    assert_includes content, "test&amp;path"
+    assert_includes content, "&lt;script&gt;"
+    refute_includes content, "<script>alert"
+  end
+
+  def test_html_includes_links_redirect_rule
+    write_yaml(@config_file, {})
+
+    generator = RedirectGenerator.new(
+      config_file: @config_file,
+      output_file: @output_file,
+      html_output_file: @html_output_file
+    )
+
+    generator.generate
+
+    content = File.read(@output_file)
+    
+    # Check that /links redirect rule is added
+    assert_includes content, "/links /links.html 200"
   end
 
   private
