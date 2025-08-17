@@ -58,8 +58,11 @@ curl -I https://jsua.co/your-path
 ### Running tests
 
 ```bash
+# Install dependencies first
+bundle install
+
 # Run the test suite
-rake test
+bundle exec rake test
 ```
 
 ## Important Notes
@@ -67,7 +70,7 @@ rake test
 - **NEVER edit `_redirects` directly** - it's auto-generated
 - Always edit `redirects.yaml` and run `ruby generate_redirects.rb`
 - The generator automatically handles trailing slash redirects
-- Run `rake test` to verify the generator is working correctly
+- Run `bundle exec rake test` to verify the generator is working correctly
 - All redirects should use HTTPS destination URLs when possible
 - Keep redirect paths short and memorable (this is the main purpose)
 - Use the `category` field in YAML to categorize redirects (personal, developer, ministry, third_party)

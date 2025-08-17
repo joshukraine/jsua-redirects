@@ -53,16 +53,36 @@ Example YAML entry:
 
 ## Development
 
+### Setup
+
+First, install the dependencies:
+
+```bash
+bundle install
+```
+
 ### Running Tests
 
-The redirect generator includes a test suite using Minitest:
+The redirect generator includes a test suite using Minitest with colored output:
 
 ```bash
 # Run all tests
-rake test
+bundle exec rake test
 
 # Run a specific test file
-ruby test/test_redirect_generator.rb
+bundle exec ruby test/test_redirect_generator.rb
+```
+
+### Code Quality
+
+The project uses StandardRB for Ruby style enforcement:
+
+```bash
+# Check code style
+bundle exec standardrb
+
+# Auto-fix style issues
+bundle exec standardrb --fix
 ```
 
 ## Technical Details

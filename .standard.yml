@@ -1,0 +1,10 @@
+# StandardRB configuration
+# https://github.com/standardrb/standard
+
+# Ruby version for parsing
+ruby_version: 3.0
+
+# Files to ignore
+ignore:
+  - "vendor/**/*"
+  - "scratchpads/**/*"
