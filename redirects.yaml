@@ -1,0 +1,84 @@
+# jsua.co URL Redirects Configuration
+# This file is used to generate the _redirects file
+# Run: ruby generate_redirects.rb
+
+# Root domain redirect (optional)
+root:
+  url: https://ofreport.com/
+  status: 301
+
+# Redirect definitions
+# Format: path (without leading slash), destination URL, optional status code (defaults to 301)
+redirects:
+  # Personal/Development Links
+  - path: dotfiles
+    url: https://github.com/joshukraine/dotfiles
+    description: My dotfiles repository
+
+  - path: fb
+    url: https://www.facebook.com/joshukraine
+    description: Facebook profile
+
+  - path: github
+    url: https://github.com/joshukraine
+    description: GitHub profile
+
+  - path: macos
+    url: https://github.com/joshukraine/mac-bootstrap
+    description: Mac bootstrap scripts
+
+  - path: mewe
+    url: https://mewe.com/i/joshukraine
+    description: MeWe profile
+
+  - path: mm-gulp
+    url: https://github.com/joshukraine/middleman-gulp
+    description: Middleman with Gulp.js
+
+  - path: tw
+    url: https://twitter.com/joshukraine
+    description: Twitter profile
+
+  - path: x
+    url: https://x.com/joshukraine
+    description: X (formerly Twitter) profile
+
+  - path: wish-list
+    url: https://joshukraine.notion.site/Joshua-s-Wish-List-2f2e7b831c1f46e4962a5c8ed3842c04
+    description: Personal wish list
+
+  # Business/Professional Links
+  - path: jan-2021-invitation
+    url: https://www.notion.so/joshukraine/A-Unique-Opportunity-bf28f2366efc4de7b151adda0d6ef15f
+    description: January 2021 invitation
+    category: business
+
+  - path: join-pioneers
+    url: https://chat.whatsapp.com/KIaTX6n8TgU03Ywd15yWv0
+    description: WhatsApp group invite
+    category: business
+
+  - path: nov-proj-2024
+    url: https://www.youtube.com/playlist?list=PLwBim7LWPkXVHyH1OtgqtTQU0SyhVNBzn
+    description: November 2024 project playlist
+    category: business
+
+  - path: pioneers-info
+    url: https://www.notion.so/joshukraine/Pioneers-Info-Center-d19fd3f2c39947e1baa757968fb73184
+    description: Pioneers information center
+    category: business
+
+  - path: pioneers-zoom-part-1
+    url: https://youtu.be/Fo19lxOQJp8
+    description: Pioneers Zoom meeting part 1
+    category: business
+
+  - path: rmo-2021
+    url: https://goodandevilbook.com/english/
+    description: RMO 2021 - Good and Evil book
+    category: business
+
+  - path: verses
+    url: https://gist.github.com/joshukraine/4fbeb76580ef113a2c1f13b7c1c8b123
+    description: Bible verses gist
+    category: business

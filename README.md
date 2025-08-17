@@ -27,10 +27,26 @@ This repo contains a simple `_redirects` file that powers short URL forwarding f
 
 ## Adding New Redirects
 
-To add a new redirect:
+### Method 1: Using the Generator Script (Recommended)
 
-1. Edit the `_redirects` file
-2. Add a new line with your redirect rule
+1. Edit the `redirects.yaml` file
+2. Add your redirect under the appropriate section
+3. Run `ruby generate_redirects.rb` to regenerate the `_redirects` file
+4. Commit both files and push to GitHub
+5. Cloudflare Pages will auto-deploy the changes
+
+Example YAML entry:
+```yaml
+- path: example
+  url: https://example.com
+  description: Example redirect
+  category: business  # Optional: 'business' or leave blank for personal
+```
+
+### Method 2: Direct Edit (Quick fixes)
+
+1. Edit the `_redirects` file directly
+2. Remember to add both the trailing slash redirect and the actual redirect
 3. Commit and push to GitHub
 4. Cloudflare Pages will auto-deploy the changes
 
