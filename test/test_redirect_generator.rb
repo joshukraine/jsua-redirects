@@ -18,7 +18,8 @@ class TestRedirectGenerator < Minitest::Test
   def test_raises_error_when_config_file_missing
     generator = RedirectGenerator.new(
       config_file: "nonexistent.yaml",
-      output_file: @output_file
+      output_file: @output_file,
+      html_output_file: @html_output_file
     )
 
     assert_raises(RuntimeError) do
@@ -58,7 +59,8 @@ class TestRedirectGenerator < Minitest::Test
 
     generator = RedirectGenerator.new(
       config_file: @config_file,
-      output_file: @output_file
+      output_file: @output_file,
+      html_output_file: @html_output_file
     )
 
     result = generator.generate
@@ -86,7 +88,8 @@ class TestRedirectGenerator < Minitest::Test
 
     generator = RedirectGenerator.new(
       config_file: @config_file,
-      output_file: @output_file
+      output_file: @output_file,
+      html_output_file: @html_output_file
     )
 
     result = generator.generate
@@ -116,7 +119,8 @@ class TestRedirectGenerator < Minitest::Test
 
     generator = RedirectGenerator.new(
       config_file: @config_file,
-      output_file: @output_file
+      output_file: @output_file,
+      html_output_file: @html_output_file
     )
 
     generator.generate
@@ -158,7 +162,8 @@ class TestRedirectGenerator < Minitest::Test
 
     generator = RedirectGenerator.new(
       config_file: @config_file,
-      output_file: @output_file
+      output_file: @output_file,
+      html_output_file: @html_output_file
     )
 
     generator.generate
@@ -197,7 +202,8 @@ class TestRedirectGenerator < Minitest::Test
 
     generator = RedirectGenerator.new(
       config_file: @config_file,
-      output_file: @output_file
+      output_file: @output_file,
+      html_output_file: @html_output_file
     )
 
     generator.generate
@@ -222,7 +228,8 @@ class TestRedirectGenerator < Minitest::Test
 
     generator = RedirectGenerator.new(
       config_file: @config_file,
-      output_file: @output_file
+      output_file: @output_file,
+      html_output_file: @html_output_file
     )
 
     generator.generate
