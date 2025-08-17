@@ -105,7 +105,7 @@ class RedirectGenerator
   def write_footer(file)
     file.puts "# Add new redirects above this line"
     file.puts
-    file.puts "# vim: set filetype=apache:"
+    file.puts "# vim: set filetype=apache" + ":"
     file.puts
   end
 end
