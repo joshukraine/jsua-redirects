@@ -17,6 +17,7 @@
 /mewe/ /mewe 301
 /tw/ /tw 301
 /x/ /x 301
+/strava/ /strava 301
 /dotfiles/ /dotfiles 301
 /github/ /github 301
 /macos/ /macos 301
@@ -35,6 +36,7 @@
 /mewe https://mewe.com/i/joshukraine 301
 /tw https://twitter.com/joshukraine 301
 /x https://x.com/joshukraine 301
+/strava https://www.strava.com/athletes/joshukraine 301
 
 # Developer Links
 /dotfiles https://github.com/joshukraine/dotfiles 301

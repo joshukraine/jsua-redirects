@@ -31,6 +31,10 @@ redirects:
       url: https://x.com/joshukraine
       description: X (formerly Twitter) profile
 
+    - path: strava
+      url: https://www.strava.com/athletes/joshukraine
+      description: Strava profile
+
   developer:
     - path: dotfiles
       url: https://github.com/joshukraine/dotfiles
