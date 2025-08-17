@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, feat/* ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        ruby-version: ['3.2', '3.3', '3.4']
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Ruby ${{ matrix.ruby-version }}
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true
+    
+    - name: Run tests
+      run: bundle exec rake test
+    
+    - name: Run StandardRB linting
+      run: bundle exec standardrb
+    
+    - name: Validate redirect generator
+      run: |
+        # Test that the generator runs without error
+        ruby generate_redirects.rb
+        
+        # Verify _redirects file was generated and is not empty
+        if [ ! -s "_redirects" ]; then
+          echo "Error: _redirects file is empty or not generated"
+          exit 1
+        fi
+        
+        # Check that the file contains expected content
+        if ! grep -q "# Personal Links" "_redirects"; then
+          echo "Error: _redirects file doesn't contain expected content"
+          exit 1
+        fi
+        
+        echo "✅ Redirect generator validation passed"
+    
+    - name: Check for uncommitted changes
+      run: |
+        # Ensure the generated _redirects file matches what's committed
+        git diff --exit-code _redirects || {
+          echo "Error: _redirects file has uncommitted changes"
+          echo "Run 'ruby generate_redirects.rb' and commit the updated file"
+          exit 1
+        }
+        echo "✅ Generated _redirects file is up to date"
