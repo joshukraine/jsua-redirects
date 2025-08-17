@@ -110,8 +110,6 @@ class RedirectGenerator
     file.puts vim_ft_comment
   end
 
-  private
-
   # Generate vim modeline comment for the _redirects file
   # Broken into parts to prevent Neovim from interpreting this as a modeline
   # when editing this Ruby source file
