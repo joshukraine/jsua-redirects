@@ -355,7 +355,7 @@ class RedirectGenerator
     sections = []
     redirects_by_category.each do |category_key, category_redirects|
       next unless category_redirects&.any?
-      
+
       category_title = format_category_title(category_key).sub(" Links", "")
       sections << generate_category_section(category_title, category_redirects)
     end
@@ -364,7 +364,7 @@ class RedirectGenerator
 
   def generate_category_section(category_title, redirects)
     links_html = redirects.map { |redirect| generate_link_card(redirect) }.join("\n")
-    
+
     <<~HTML
       <div class="section">
           <h2>#{category_title}</h2>
@@ -380,7 +380,7 @@ class RedirectGenerator
     url = redirect["url"]
     description = redirect["description"] || url
     full_url = "https://jsua.co/#{path}"
-    
+
     <<~HTML
       <div class="link-card">
           <div class="link-info">
@@ -395,13 +395,13 @@ class RedirectGenerator
   def generate_category_stats(redirects_by_category, root_redirect)
     stats = []
     stats << "<p><strong>Root redirect:</strong> Yes</p>" if root_redirect
-    
+
     redirects_by_category.each do |category_key, category_redirects|
       next unless category_redirects&.any?
       category_title = format_category_title(category_key).sub(" Links", "")
       stats << "<p><strong>#{category_title}:</strong> #{category_redirects.length} links</p>"
     end
-    
+
     stats.join("\n")
   end
 
