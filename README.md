@@ -56,6 +56,20 @@ Example YAML entry:
 - `jsua.co/business` → Business website URL
 - `jsua.co/contact` → Contact form or LinkedIn profile
 
+## Development
+
+### Running Tests
+
+The redirect generator includes a test suite using Minitest:
+
+```bash
+# Run all tests
+rake test
+
+# Run a specific test file
+ruby test/test_redirect_generator.rb
+```
+
 ## Technical Details
 
 - **Platform**: Cloudflare Pages
