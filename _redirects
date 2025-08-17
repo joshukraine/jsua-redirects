@@ -1,4 +1,7 @@
 # jsua.co URL Redirects
+# WARNING: This file is auto-generated. DO NOT EDIT DIRECTLY!
+# To modify redirects, edit redirects.yaml and run: ruby generate_redirects.rb
+#
 # Format: /path https://destination-url status-code
 
 # Root domain redirect
@@ -44,7 +47,6 @@
 /rmo-2021 https://goodandevilbook.com/english/ 301
 /verses https://gist.github.com/joshukraine/4fbeb76580ef113a2c1f13b7c1c8b123 301
 
-# Add new redirects above this line
 
 # vim: set filetype=apache:
 

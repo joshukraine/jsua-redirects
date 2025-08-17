@@ -47,14 +47,6 @@ Changes are automatically deployed by Cloudflare Pages:
 4. Commit both files with message like: "Add redirect for /example"
 5. Push to main branch
 
-### Adding a new redirect (manual/quick fix)
-
-1. Edit `_redirects` file directly
-2. Add trailing slash redirect: `/path/ /path 301`
-3. Add actual redirect: `/path https://url.com 301`
-4. Commit with message like: "Add redirect for /example to <https://example.com>"
-5. Push to main branch
-
 ### Testing redirects
 
 After deployment, test by visiting `https://jsua.co/your-path` in a browser or using curl:
@@ -72,7 +64,8 @@ rake test
 
 ## Important Notes
 
-- Edit `redirects.yaml` and run `ruby generate_redirects.rb` to maintain redirects
+- **NEVER edit `_redirects` directly** - it's auto-generated
+- Always edit `redirects.yaml` and run `ruby generate_redirects.rb`
 - The generator automatically handles trailing slash redirects
 - Run `rake test` to verify the generator is working correctly
 - All redirects should use HTTPS destination URLs when possible
