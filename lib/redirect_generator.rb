@@ -15,7 +15,10 @@ class RedirectGenerator
       raise "Error: #{config_file} not found!"
     end
 
-    config = YAML.load_file(config_file)
+    config = YAML.safe_load_file(
+      config_file,
+      permitted_classes: [Hash, Array, String, Integer, Float, NilClass, TrueClass, FalseClass]
+    )
     write_redirects(config)
 
     {
