@@ -8,7 +8,9 @@ This is a URL redirect management repository for the `jsua.co` domain using Clou
 
 ## Key Files
 
-- `_redirects` - The main configuration file containing all URL redirect rules
+- `redirects.yaml` - Source configuration for redirects (edit this file)
+- `generate_redirects.rb` - Ruby script that generates `_redirects` from YAML
+- `_redirects` - The generated configuration file for Cloudflare Pages
 - `README.md` - User documentation explaining the redirect system
 
 ## Redirect Configuration
@@ -35,12 +37,21 @@ Changes are automatically deployed by Cloudflare Pages:
 
 ## Common Tasks
 
-### Adding a new redirect
+### Adding a new redirect (recommended)
 
-1. Edit `_redirects` file
-2. Add new line following the format above
-3. Commit with message like: "Add redirect for /example to <https://example.com>"
-4. Push to main branch
+1. Edit `redirects.yaml` file
+2. Add new entry with path, url, and optional description/category
+3. Run `ruby generate_redirects.rb` to regenerate `_redirects`
+4. Commit both files with message like: "Add redirect for /example"
+5. Push to main branch
+
+### Adding a new redirect (manual/quick fix)
+
+1. Edit `_redirects` file directly
+2. Add trailing slash redirect: `/path/ /path 301`
+3. Add actual redirect: `/path https://url.com 301`
+4. Commit with message like: "Add redirect for /example to <https://example.com>"
+5. Push to main branch
 
 ### Testing redirects
 
@@ -53,6 +64,8 @@ curl -I https://jsua.co/your-path
 ## Important Notes
 
 - This is a configuration-only repository - no tests or build process exists
+- Edit `redirects.yaml` and run `ruby generate_redirects.rb` to maintain redirects
+- The generator automatically handles trailing slash redirects
 - All redirects should use HTTPS destination URLs when possible
 - Keep redirect paths short and memorable (this is the main purpose)
-- Document the purpose of business/professional redirects with comments
+- Use the `category: business` field in YAML to categorize business redirects
