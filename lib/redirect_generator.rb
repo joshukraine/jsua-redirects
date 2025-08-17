@@ -55,6 +55,9 @@ class RedirectGenerator
     file.puts "#"
     file.puts "# Format: /path https://destination-url status-code"
     file.puts
+    file.puts "# Special rule to serve HTML landing page"
+    file.puts "/links /links.html 200"
+    file.puts
   end
 
   def write_root_redirect(file, root)
