@@ -5,3 +5,4 @@ scratchpads/
 # Bundler
 .bundle/
 vendor/bundle/
+links.html

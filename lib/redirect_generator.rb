@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
 require "yaml"
+require "fileutils"
+require_relative "html_template"
 
 class RedirectGenerator
-  attr_reader :config_file, :output_file
+  attr_reader :config_file, :output_file, :html_output_file
 
-  def initialize(config_file: "redirects.yaml", output_file: "_redirects")
+  def initialize(config_file: "redirects.yaml", output_file: "_redirects", html_output_file: "links/index.html")
     @config_file = config_file
     @output_file = output_file
+    @html_output_file = html_output_file
   end
 
   def generate
@@ -20,6 +23,7 @@ class RedirectGenerator
       permitted_classes: [Hash, Array, String, Integer, Float, NilClass, TrueClass, FalseClass]
     )
     write_redirects(config)
+    write_html_page(config)
 
     {
       total_redirects: count_total_redirects(config["redirects"]),
@@ -118,5 +122,33 @@ class RedirectGenerator
   # when editing this Ruby source file
   def vim_ft_comment
     ["# " + "vim: ", "set ", "filetype", "=", "apache:"].join("")
+  end
+
+  def write_html_page(config)
+    FileUtils.mkdir_p(File.dirname(html_output_file))
+    File.open(html_output_file, "w") do |file|
+      file.puts generate_html_content(config)
+    end
+  end
+
+  def generate_html_content(config)
+    root_redirect = config["root"]
+    redirects_by_category = config["redirects"] || {}
+    total_redirects = count_total_redirects(redirects_by_category)
+    total_with_root = total_redirects + (root_redirect ? 1 : 0)
+
+    # Prepare categories with formatted titles
+    categories = {}
+    redirects_by_category.each do |category_key, category_redirects|
+      next unless category_redirects&.any?
+      category_title = format_category_title(category_key).sub(" Links", "")
+      categories[category_title] = category_redirects
+    end
+
+    HtmlTemplate.render(
+      root_redirect: root_redirect,
+      categories: categories,
+      total_count: total_with_root
+    )
   end
 end
