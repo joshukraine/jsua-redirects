@@ -15,12 +15,12 @@
 /tw/ /tw 301
 /x/ /x 301
 /strava/ /strava 301
+/pay/ /pay 301
 /dotfiles/ /dotfiles 301
 /github/ /github 301
 /macos/ /macos 301
 /mm-gulp/ /mm-gulp 301
-/jan-2021-invitation/ /jan-2021-invitation 301
-/join-pioneers/ /join-pioneers 301
+/laptop/ /laptop 301
 /nov-proj-2024/ /nov-proj-2024 301
 /pioneers-info/ /pioneers-info 301
 /pioneers-zoom-part-1/ /pioneers-zoom-part-1 301
@@ -34,16 +34,16 @@
 /tw https://twitter.com/joshukraine 301
 /x https://x.com/joshukraine 301
 /strava https://www.strava.com/athletes/joshukraine 301
+/pay https://www.paypal.com/paypalme/joshukraine 301
 
 # Developer Links
 /dotfiles https://github.com/joshukraine/dotfiles 301
 /github https://github.com/joshukraine 301
 /macos https://github.com/joshukraine/mac-bootstrap 301
 /mm-gulp https://github.com/joshukraine/middleman-gulp 301
+/laptop https://github.com/joshukraine/laptop 301
 
 # Ministry Links
-/jan-2021-invitation https://www.notion.so/joshukraine/A-Unique-Opportunity-bf28f2366efc4de7b151adda0d6ef15f 301
-/join-pioneers https://chat.whatsapp.com/KIaTX6n8TgU03Ywd15yWv0 301
 /nov-proj-2024 https://www.youtube.com/playlist?list=PLwBim7LWPkXVHyH1OtgqtTQU0SyhVNBzn 301
 /pioneers-info https://www.notion.so/joshukraine/Pioneers-Info-Center-d19fd3f2c39947e1baa757968fb73184 301
 /pioneers-zoom-part-1 https://youtu.be/Fo19lxOQJp8 301
