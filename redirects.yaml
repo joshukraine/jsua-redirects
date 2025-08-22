@@ -56,6 +56,10 @@ redirects:
       url: https://github.com/joshukraine/middleman-gulp
       description: Middleman with Gulp.js
 
+    - path: laptop
+      url: https://github.com/joshukraine/laptop
+      description: My fork of thoughtbot's laptop script
+
   ministry:
     - path: nov-proj-2024
       url: https://www.youtube.com/playlist?list=PLwBim7LWPkXVHyH1OtgqtTQU0SyhVNBzn
