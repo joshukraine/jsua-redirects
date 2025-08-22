@@ -35,6 +35,10 @@ redirects:
       url: https://www.strava.com/athletes/joshukraine
       description: Strava profile
 
+    - path: pay
+      url: https://www.paypal.com/paypalme/joshukraine
+      description: PayPal.me link
+
   developer:
     - path: dotfiles
       url: https://github.com/joshukraine/dotfiles
