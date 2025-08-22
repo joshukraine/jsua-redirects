@@ -57,14 +57,6 @@ redirects:
       description: Middleman with Gulp.js
 
   ministry:
-    - path: jan-2021-invitation
-      url: https://www.notion.so/joshukraine/A-Unique-Opportunity-bf28f2366efc4de7b151adda0d6ef15f
-      description: January 2021 invitation
-
-    - path: join-pioneers
-      url: https://chat.whatsapp.com/KIaTX6n8TgU03Ywd15yWv0
-      description: WhatsApp group invite
-
     - path: nov-proj-2024
       url: https://www.youtube.com/playlist?list=PLwBim7LWPkXVHyH1OtgqtTQU0SyhVNBzn
       description: November 2024 project playlist
