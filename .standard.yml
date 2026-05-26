@@ -1,10 +1,9 @@
 # StandardRB configuration
 # https://github.com/standardrb/standard
+#
+# ruby_version is intentionally unset — standardrb auto-detects from the
+# runtime / .ruby-version, matching the convention used in our other projects.
 
-# Ruby version for parsing
-ruby_version: 3.0
-
-# Files to ignore
 ignore:
   - "vendor/**/*"
   - "scratchpads/**/*"
