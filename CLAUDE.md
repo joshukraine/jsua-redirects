@@ -1,76 +1,57 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Project-specific guidance for Claude Code. Global conventions (Conventional Commits, branch naming, lint policy, etc.) live in `~/.claude/CLAUDE.md` and apply here too.
 
 ## Repository Purpose
 
-This is a URL redirect management repository for the `jsua.co` domain using Cloudflare Pages. The repository contains only configuration files - no build process or programming code.
+URL redirect management for the `jsua.co` domain, served by Cloudflare Pages. A Ruby script reads `redirects.yaml` and generates both the Cloudflare `_redirects` file and a public landing page at `/links`.
 
 ## Key Files
 
-- `redirects.yaml` - Source configuration for redirects (edit this file)
-- `generate_redirects.rb` - Ruby script that generates `_redirects` from YAML
-- `lib/redirect_generator.rb` - Core logic for generating redirects
-- `_redirects` - The generated configuration file for Cloudflare Pages
-- `test/test_redirect_generator.rb` - Test suite for the generator
-- `README.md` - User documentation explaining the redirect system
+- `redirects.yaml` — Source of truth. **This is the only file to edit when adding/changing redirects.**
+- `generate_redirects.rb` — Entry point script. Runs `RedirectGenerator#generate`.
+- `lib/redirect_generator.rb` — Reads YAML, writes `_redirects` and `links/index.html`.
+- `lib/html_template.rb` — HTML/CSS/JS for the landing page (heredoc-rendered).
+- `_redirects` — Generated. Cloudflare Pages reads this. **Never edit by hand.**
+- `links/index.html` — Generated landing page (click-to-copy short URL directory).
+- `404.html` — Static fallback page served by Cloudflare when no redirect matches.
+- `test/test_redirect_generator.rb` — Minitest suite.
+- `.github/workflows/ci.yml` — Tests + lint + drift check (fails if `_redirects` is stale).
 
-## Redirect Configuration
+## Workflow: Adding or Changing a Redirect
 
-The `_redirects` file uses the following format:
+1. Edit `redirects.yaml` — add/modify entries under the appropriate category (`personal`, `developer`, `ministry`, `third_party`).
+2. Run `ruby generate_redirects.rb` to regenerate `_redirects` and `links/index.html`.
+3. Commit **all three** files together (`redirects.yaml`, `_redirects`, `links/index.html`) — CI will fail if any are out of sync.
+4. Push to `main`. Cloudflare Pages deploys within ~30 seconds.
 
-```text
-/short-path https://full-destination-url.com 301
+### YAML entry format
+
+```yaml
+- path: example                 # required, no leading slash
+  url: https://example.com      # required, prefer HTTPS
+  status: 301                   # optional, defaults to 301 (use 302 for temporary)
+  description: Example redirect # optional, shown on /links page
 ```
 
-- Path must start with `/`
-- Use `301` for permanent redirects (most common)
-- Use `302` for temporary redirects
-- Comments start with `#`
-- One redirect per line
+## Commands
 
-## Deployment
+```bash
+bundle install               # install gems (Ruby 4.0.5, pinned via .ruby-version)
+ruby generate_redirects.rb   # regenerate _redirects and links/index.html
+bundle exec rake test        # run the test suite
+bundle exec standardrb       # lint (use --fix to auto-fix)
+```
 
-Changes are automatically deployed by Cloudflare Pages:
+## Important Constraints
 
-- Push to main branch triggers deployment
-- Changes go live within 30 seconds
-- No build commands or CI/CD configuration needed
+- **Never edit `_redirects` or `links/index.html` directly** — they're generated and CI will reject drift.
+- The generator emits trailing-slash redirects automatically; don't add them manually in YAML.
+- Prefer HTTPS destinations.
+- Use `302` for time-bound or temporary destinations so browsers/caches don't pin them permanently.
 
-## Common Tasks
-
-### Adding a new redirect (recommended)
-
-1. Edit `redirects.yaml` file
-2. Add new entry with path, url, and optional description/category
-3. Run `ruby generate_redirects.rb` to regenerate `_redirects`
-4. Commit both files with message like: "Add redirect for /example"
-5. Push to main branch
-
-### Testing redirects
-
-After deployment, test by visiting `https://jsua.co/your-path` in a browser or using curl:
+## Testing a Live Redirect
 
 ```bash
 curl -I https://jsua.co/your-path
 ```
-
-### Running tests
-
-```bash
-# Install dependencies first
-bundle install
-
-# Run the test suite
-bundle exec rake test
-```
-
-## Important Notes
-
-- **NEVER edit `_redirects` directly** - it's auto-generated
-- Always edit `redirects.yaml` and run `ruby generate_redirects.rb`
-- The generator automatically handles trailing slash redirects
-- Run `bundle exec rake test` to verify the generator is working correctly
-- All redirects should use HTTPS destination URLs when possible
-- Keep redirect paths short and memorable (this is the main purpose)
-- Organize redirects by category in YAML (personal, developer, ministry, third_party)

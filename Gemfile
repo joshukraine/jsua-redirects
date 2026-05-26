@@ -9,5 +9,5 @@ gem "rake", "~> 13.2"
 
 # Development
 group :development do
-  gem "standard", "~> 1.45", require: false
+  gem "standard", ">= 1.54", require: false
 end

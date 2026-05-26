@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main, feat/*]
+    branches: [main]
   pull_request:
     branches: [main]
 
@@ -13,27 +13,19 @@ jobs:
       checks: write
       contents: write
 
-    strategy:
-      matrix:
-        ruby-version: ["3.2", "3.3", "3.4"]
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Ruby ${{ matrix.ruby-version }}
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
 
       - name: Run tests
         run: bundle exec rake test
 
       - name: Run StandardRB linting
-        uses: standardrb/standard-ruby-action@v1
-        with:
-          ruby-version: ${{ matrix.ruby-version }}
-          autofix: false
+        run: bundle exec standardrb
 
       - name: Validate redirect generator
         run: |

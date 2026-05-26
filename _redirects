@@ -11,8 +11,6 @@
 # Trailing slash redirects (handle URLs with trailing slashes)
 /wish-list/ /wish-list 301
 /fb/ /fb 301
-/mewe/ /mewe 301
-/tw/ /tw 301
 /x/ /x 301
 /strava/ /strava 301
 /pay/ /pay 301
@@ -30,8 +28,6 @@
 # Personal Links
 /wish-list https://joshukraine.notion.site/Joshua-s-Wish-List-2f2e7b831c1f46e4962a5c8ed3842c04 301
 /fb https://www.facebook.com/joshukraine 301
-/mewe https://mewe.com/i/joshukraine 301
-/tw https://twitter.com/joshukraine 301
 /x https://x.com/joshukraine 301
 /strava https://www.strava.com/athletes/joshukraine 301
 /pay https://www.paypal.com/paypalme/joshukraine 301
