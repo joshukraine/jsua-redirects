@@ -19,14 +19,6 @@ redirects:
       url: https://www.facebook.com/joshukraine
       description: Facebook profile
 
-    - path: mewe
-      url: https://mewe.com/i/joshukraine
-      description: MeWe profile
-
-    - path: tw
-      url: https://twitter.com/joshukraine
-      description: Twitter profile
-
     - path: x
       url: https://x.com/joshukraine
       description: X (formerly Twitter) profile
