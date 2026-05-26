@@ -11,6 +11,11 @@ root:
 # Format: path (without leading slash), destination URL, optional status code (defaults to 301), description
 redirects:
   personal:
+    - path: abbie-axel
+      url: https://joshukraine.com/abbie-axel/
+      status: 302
+      description: Abbie & Axel wedding info (temporary placeholder)
+
     - path: wish-list
       url: https://joshukraine.notion.site/Joshua-s-Wish-List-2f2e7b831c1f46e4962a5c8ed3842c04
       description: Personal wish list
