@@ -8,7 +8,12 @@ root:
   status: 301
 
 # Redirect definitions organized by category
-# Format: path (without leading slash), destination URL, optional status code (defaults to 301), description
+# Format: path (without leading slash), destination URL, optional status code (defaults to 302), description
+#
+# Note on status: this is a redirect-management service whose purpose is to provide a stable
+# short URL while the destination may evolve over time. The default is 302 (temporary) so
+# clients/caches don't pin a destination we may want to change later. Use status: 301 only
+# for entries whose destination is genuinely permanent.
 redirects:
   personal:
     - path: abbie-axel

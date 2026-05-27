@@ -22,7 +22,7 @@ Visit [jsua.co/links](https://jsua.co/links) to see all available short URLs wit
 1. The `_redirects` file contains simple mappings in the format:
 
    ```text
-   /short-path https://full-destination-url.com 301
+   /short-path https://full-destination-url.com 302
    ```
 
 2. Cloudflare Pages automatically deploys changes when this repo is updated
@@ -37,8 +37,8 @@ To add a new redirect:
 
 1. Edit the `redirects.yaml` file
 2. Add your redirect under the appropriate section
-3. Run `ruby generate_redirects.rb` to regenerate the `_redirects` file
-4. Commit both files and push to GitHub
+3. Run `ruby generate_redirects.rb` to regenerate the `_redirects` file and the `/links` landing page
+4. Commit all three files (`redirects.yaml`, `_redirects`, `links/index.html`) and push to GitHub
 5. Cloudflare Pages will auto-deploy the changes
 
 Example YAML entry:
@@ -48,12 +48,17 @@ redirects:
     - path: example
       url: https://example.com
       description: Example redirect
-  
+
   personal:
     - path: my-link
       url: https://mywebsite.com
+      status: 301              # optional; defaults to 302
       description: Personal website
 ```
+
+### A note on status codes
+
+The optional `status:` field defaults to `302` (temporary). Because this repo exists to provide a stable short URL over a destination that may evolve, `302` keeps browsers and caches from pinning the destination — so when you change a `url:` later, every existing QR code or printed link follows the new target on the next request. Use `status: 301` only for entries whose destination is genuinely permanent.
 
 ## Examples
 

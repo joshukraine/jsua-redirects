@@ -30,9 +30,11 @@ URL redirect management for the `jsua.co` domain, served by Cloudflare Pages. A 
 ```yaml
 - path: example                 # required, no leading slash
   url: https://example.com      # required, prefer HTTPS
-  status: 301                   # optional, defaults to 301 (use 302 for temporary)
+  status: 302                   # optional, defaults to 302 (use 301 only for truly permanent destinations)
   description: Example redirect # optional, shown on /links page
 ```
+
+**Why 302 by default:** This repo is a redirect-management service whose purpose is to provide a stable short URL over a destination that may evolve. A 302 response tells clients/caches not to pin the redirect, so when we change `url:` later (e.g., flipping a placeholder to a permanent site), every existing QR code or printed link starts following the new destination on the next request. Use `status: 301` only when you're confident the destination will never need to move.
 
 ## Commands
 
