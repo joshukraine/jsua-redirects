@@ -61,7 +61,7 @@ class RedirectGenerator
 
   def write_root_redirect(file, root)
     file.puts "# Root domain redirect"
-    status = root["status"] || 301
+    status = root["status"] || 302
     file.puts "/ #{root["url"]} #{status}"
     file.puts
   end
@@ -107,7 +107,7 @@ class RedirectGenerator
     category_redirects.each do |redirect|
       path = redirect["path"]
       url = redirect["url"]
-      status = redirect["status"] || 301
+      status = redirect["status"] || 302
       file.puts "/#{path} #{url} #{status}"
     end
     file.puts

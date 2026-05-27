@@ -103,7 +103,7 @@ class TestRedirectGenerator < Minitest::Test
     assert_includes content, "/test https://test.com 301"
   end
 
-  def test_defaults_to_301_status
+  def test_defaults_to_302_status
     config = {
       "redirects" => {
         "personal" => [
@@ -126,7 +126,33 @@ class TestRedirectGenerator < Minitest::Test
     generator.generate
 
     content = File.read(@output_file)
-    assert_includes content, "/test https://test.com 301"
+    assert_includes content, "/test https://test.com 302"
+  end
+
+  def test_explicit_301_status_overrides_default
+    config = {
+      "redirects" => {
+        "personal" => [
+          {
+            "path" => "permanent",
+            "url" => "https://permanent.example",
+            "status" => 301
+          }
+        ]
+      }
+    }
+    write_yaml(@config_file, config)
+
+    generator = RedirectGenerator.new(
+      config_file: @config_file,
+      output_file: @output_file,
+      html_output_file: @html_output_file
+    )
+
+    generator.generate
+
+    content = File.read(@output_file)
+    assert_includes content, "/permanent https://permanent.example 301"
   end
 
   def test_categorizes_redirects_correctly
@@ -181,10 +207,10 @@ class TestRedirectGenerator < Minitest::Test
     assert ministry_pos < third_party_pos
 
     # Check redirects are under correct categories
-    assert_match(/# Personal Links.*\/personal1 https:\/\/personal1.com 301/m, content)
-    assert_match(/# Developer Links.*\/dev1 https:\/\/dev1.com 301/m, content)
-    assert_match(/# Ministry Links.*\/ministry1 https:\/\/ministry1.com 301/m, content)
-    assert_match(/# Third Party Links.*\/third1 https:\/\/third1.com 301/m, content)
+    assert_match(/# Personal Links.*\/personal1 https:\/\/personal1.com 302/m, content)
+    assert_match(/# Developer Links.*\/dev1 https:\/\/dev1.com 302/m, content)
+    assert_match(/# Ministry Links.*\/ministry1 https:\/\/ministry1.com 302/m, content)
+    assert_match(/# Third Party Links.*\/third1 https:\/\/third1.com 302/m, content)
   end
 
   def test_defaults_to_personal_category
@@ -209,7 +235,7 @@ class TestRedirectGenerator < Minitest::Test
     generator.generate
 
     content = File.read(@output_file)
-    assert_match(/# Personal Links.*\/test https:\/\/test.com 301/m, content)
+    assert_match(/# Personal Links.*\/test https:\/\/test.com 302/m, content)
   end
 
   def test_handles_empty_categories
